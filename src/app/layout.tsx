@@ -16,8 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Bloomweaver AI Chat",
-  description: "Advanced AI chat platform focused on intelligent conversations",
+  title: "Bloomweaver Memory AI",
+  description: "Advanced Memory AI for your conversations. A chatbot that remembers everything and learns from your conversations.",
 };
 
 export default function RootLayout({
