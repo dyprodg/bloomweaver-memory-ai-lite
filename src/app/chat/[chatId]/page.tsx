@@ -276,16 +276,16 @@ export default function ChatPage({
 
   if (isLoading && messages.length === 0) {
     return (
-      <div className="flex-1 flex items-center justify-center">
-        <div className="animate-spin w-8 h-8 border-2 border-gray-300 border-t-blue-600 rounded-full"></div>
+      <div className="flex-1 flex items-center justify-center bg-gray-900">
+        <div className="animate-spin w-8 h-8 border-2 border-gray-600 border-t-blue-600 rounded-full"></div>
       </div>
     );
   }
 
   if (isChatNotFound) {
     return (
-      <div className="flex-1 flex items-center justify-center p-4">
-        <div className="bg-red-50 text-red-700 p-6 rounded-lg max-w-[95%] sm:max-w-md text-center">
+      <div className="flex-1 flex items-center justify-center p-4 bg-gray-900">
+        <div className="bg-red-900/50 text-red-200 p-6 rounded-lg max-w-[95%] sm:max-w-md text-center">
           <h3 className="text-xl font-semibold mb-2">Chat not found</h3>
           <p>
             This chat session could not be found. You will be redirected to the
@@ -305,7 +305,7 @@ export default function ChatPage({
   return (
     <>
       {/* Model selector */}
-      <div className="border-b border-gray-200 bg-white p-2">
+      <div className="border-b border-gray-700 bg-gray-800 p-2">
         <div className="max-w-3xl mx-auto flex items-center">
           <div className="w-48 mr-2">
             <div data-user-tier={userTier} className="hidden">
@@ -317,10 +317,10 @@ export default function ChatPage({
               userTier={userTier}
             />
           </div>
-          <div className="text-xs text-gray-500">
+          <div className="text-xs text-gray-400">
             <span>
               {tierLoaded ? formatTierName(userTier) : "Loading..."} tier ·
-              <a href="#" className="text-blue-600 hover:underline ml-1">
+              <a href="#" className="text-blue-400 hover:underline ml-1">
                 {tierUpgradeInfo.upgradeText}
               </a>
             </span>
@@ -328,7 +328,7 @@ export default function ChatPage({
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto p-3 sm:p-4 bg-gray-50">
+      <div className="flex-1 overflow-y-auto p-3 sm:p-4 bg-gray-900">
         {messages.map((message) => (
           <ChatMessage
             key={message.id}
@@ -340,10 +340,10 @@ export default function ChatPage({
 
         {isError && (
           <div className="flex justify-center my-4">
-            <div className="bg-red-50 text-red-700 p-3 rounded-lg max-w-[90%] sm:max-w-[80%] text-center">
+            <div className="bg-red-900/50 text-red-300 p-3 rounded-lg max-w-[90%] sm:max-w-[80%] text-center">
               <p>An error occurred. Please try again.</p>
               {debugInfo && (
-                <p className="text-xs mt-2 text-red-500 break-words">
+                <p className="text-xs mt-2 text-red-400 break-words">
                   {debugInfo}
                 </p>
               )}
@@ -353,18 +353,18 @@ export default function ChatPage({
 
         {isLoading && (
           <div className="flex justify-start mb-4">
-            <div className="bg-gray-100 text-gray-800 p-3 rounded-lg rounded-bl-none max-w-[90%] sm:max-w-[80%]">
+            <div className="bg-gray-800 text-gray-300 p-3 rounded-lg rounded-bl-none max-w-[90%] sm:max-w-[80%]">
               <div className="flex space-x-2">
                 <div
-                  className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
+                  className="w-2 h-2 bg-gray-500 rounded-full animate-bounce"
                   style={{ animationDelay: "0ms" }}
                 ></div>
                 <div
-                  className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
+                  className="w-2 h-2 bg-gray-500 rounded-full animate-bounce"
                   style={{ animationDelay: "150ms" }}
                 ></div>
                 <div
-                  className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
+                  className="w-2 h-2 bg-gray-500 rounded-full animate-bounce"
                   style={{ animationDelay: "300ms" }}
                 ></div>
               </div>
@@ -374,8 +374,8 @@ export default function ChatPage({
 
         {isStreaming && (
           <div className="flex justify-start mb-4">
-            <div className="bg-gray-100 text-gray-800 p-3 rounded-lg rounded-bl-none max-w-[90%] sm:max-w-[80%]">
-              <div className="inline-block w-1.5 h-4 bg-gray-400 animate-blink"></div>
+            <div className="bg-gray-800 text-gray-300 p-3 rounded-lg rounded-bl-none max-w-[90%] sm:max-w-[80%]">
+              <div className="inline-block w-1.5 h-4 bg-gray-500 animate-blink"></div>
             </div>
           </div>
         )}

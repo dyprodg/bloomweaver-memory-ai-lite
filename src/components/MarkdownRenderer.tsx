@@ -13,7 +13,7 @@ export default function MarkdownRenderer({ content }: MarkdownRendererProps) {
   // Enhanced processor for think tags that works directly with HTML
   return (
     <div
-      className="prose prose-slate prose-p:text-gray-800 prose-headings:text-gray-900 prose-strong:font-semibold max-w-none"
+      className="prose prose-invert prose-p:text-gray-300 prose-headings:text-gray-100 prose-strong:font-semibold max-w-none"
       suppressHydrationWarning
     >
       {/* Pre-process the content to replace <think> tags with styled divs */}
@@ -41,7 +41,7 @@ export default function MarkdownRenderer({ content }: MarkdownRendererProps) {
 
                   return inline ? (
                     <code
-                      className="bg-gray-100 text-blue-700 rounded px-1.5 py-0.5 text-sm font-medium"
+                      className="bg-gray-800 text-blue-300 rounded px-1.5 py-0.5 text-sm font-medium"
                       suppressHydrationWarning
                       {...props}
                     >
@@ -72,7 +72,7 @@ export default function MarkdownRenderer({ content }: MarkdownRendererProps) {
 
                   return (
                     <p
-                      className="mb-4 text-gray-800 leading-relaxed"
+                      className="mb-4 text-gray-300 leading-relaxed"
                       suppressHydrationWarning
                     >
                       {children}
@@ -82,7 +82,7 @@ export default function MarkdownRenderer({ content }: MarkdownRendererProps) {
                 h1({ children }: any) {
                   return (
                     <h1
-                      className="text-2xl font-bold mb-4 text-gray-900"
+                      className="text-2xl font-bold mb-4 text-gray-100"
                       suppressHydrationWarning
                     >
                       {children}
@@ -92,7 +92,7 @@ export default function MarkdownRenderer({ content }: MarkdownRendererProps) {
                 h2({ children }: any) {
                   return (
                     <h2
-                      className="text-xl font-bold mb-3 text-gray-900"
+                      className="text-xl font-bold mb-3 text-gray-100"
                       suppressHydrationWarning
                     >
                       {children}
@@ -102,7 +102,7 @@ export default function MarkdownRenderer({ content }: MarkdownRendererProps) {
                 h3({ children }: any) {
                   return (
                     <h3
-                      className="text-lg font-bold mb-2 text-gray-900"
+                      className="text-lg font-bold mb-2 text-gray-100"
                       suppressHydrationWarning
                     >
                       {children}
@@ -112,7 +112,7 @@ export default function MarkdownRenderer({ content }: MarkdownRendererProps) {
                 ul({ children }: any) {
                   return (
                     <ul
-                      className="list-disc pl-5 mb-4 text-gray-800"
+                      className="list-disc pl-5 mb-4 text-gray-300"
                       suppressHydrationWarning
                     >
                       {children}
@@ -122,7 +122,7 @@ export default function MarkdownRenderer({ content }: MarkdownRendererProps) {
                 ol({ children }: any) {
                   return (
                     <ol
-                      className="list-decimal pl-5 mb-4 text-gray-800"
+                      className="list-decimal pl-5 mb-4 text-gray-300"
                       suppressHydrationWarning
                     >
                       {children}
@@ -131,7 +131,7 @@ export default function MarkdownRenderer({ content }: MarkdownRendererProps) {
                 },
                 li({ children }: any) {
                   return (
-                    <li className="mb-1 text-gray-800" suppressHydrationWarning>
+                    <li className="mb-1 text-gray-300" suppressHydrationWarning>
                       {children}
                     </li>
                   );
@@ -139,7 +139,7 @@ export default function MarkdownRenderer({ content }: MarkdownRendererProps) {
                 blockquote({ children }: any) {
                   return (
                     <blockquote
-                      className="border-l-4 border-blue-300 pl-4 italic my-4 text-gray-700"
+                      className="border-l-4 border-blue-600 pl-4 italic my-4 text-gray-400"
                       suppressHydrationWarning
                     >
                       {children}
@@ -150,7 +150,7 @@ export default function MarkdownRenderer({ content }: MarkdownRendererProps) {
                   return (
                     <a
                       href={href}
-                      className="text-blue-600 hover:text-blue-800 hover:underline"
+                      className="text-blue-400 hover:text-blue-300 hover:underline"
                       target="_blank"
                       rel="noopener noreferrer"
                       suppressHydrationWarning
@@ -172,11 +172,11 @@ export default function MarkdownRenderer({ content }: MarkdownRendererProps) {
           return (
             <div
               key={`think-${index}`}
-              className="bg-gray-100 p-4 rounded-md my-4 text-gray-600 text-sm font-mono leading-relaxed"
+              className="bg-gray-800 p-4 rounded-md my-4 text-gray-300 text-sm font-mono leading-relaxed"
               suppressHydrationWarning
             >
               <div
-                className="font-semibold text-gray-700 mb-2"
+                className="font-semibold text-gray-200 mb-2"
                 suppressHydrationWarning
               >
                 AI Thinking Process:

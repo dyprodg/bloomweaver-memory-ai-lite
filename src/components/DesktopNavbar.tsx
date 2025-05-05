@@ -21,7 +21,7 @@ export default function DesktopNavbar() {
               priority
           />
         <span className="text-blue-600">Bloomweaver</span>
-        <span>AI Chat</span>
+        <span className="text-gray-400">Memory AI</span>
       </Link>
 
       <div className="flex gap-4 items-center">

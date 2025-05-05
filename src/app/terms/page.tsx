@@ -8,16 +8,16 @@ export const metadata: Metadata = {
 
 export default function TermsOfService() {
   return (
-    <div className="flex-1 flex items-center justify-center p-6">
-      <div className="max-w-4xl w-full bg-white rounded-2xl shadow-md p-8 border border-gray-200">
-        <h1 className="text-4xl font-bold text-center mb-10 text-blue-500">
+    <div className="flex-1 flex items-center justify-center p-6 bg-gray-900">
+      <div className="max-w-4xl w-full bg-gray-800 rounded-2xl shadow-md p-8 border border-gray-700">
+        <h1 className="text-4xl font-bold text-center mb-10 text-blue-400">
           Terms of Service
         </h1>
 
         <div className="space-y-8">
-          <section className="border border-gray-200 rounded-xl p-6 hover:border-blue-300 hover:shadow-md transition-all">
+          <section className="border border-gray-700 rounded-xl p-6 hover:border-blue-500 hover:shadow-md transition-all bg-gray-800">
             <div className="flex items-start mb-4">
-              <div className="mr-4 mt-1 h-8 w-8 flex items-center justify-center rounded-md bg-blue-100 text-blue-600">
+              <div className="mr-4 mt-1 h-8 w-8 flex items-center justify-center rounded-md bg-blue-900 text-blue-400">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="18"
@@ -34,10 +34,10 @@ export default function TermsOfService() {
                 </svg>
               </div>
               <div>
-                <h2 className="text-2xl font-semibold text-blue-600 mb-3">
+                <h2 className="text-2xl font-semibold text-blue-400 mb-3">
                   1. Acceptance of Terms
                 </h2>
-                <p className="text-gray-600">
+                <p className="text-gray-300">
                   By accessing or using our service, you agree to be bound by
                   these Terms of Service. If you do not agree to these terms,
                   please do not use our service.
@@ -46,9 +46,9 @@ export default function TermsOfService() {
             </div>
           </section>
 
-          <section className="border border-gray-200 rounded-xl p-6 hover:border-blue-300 hover:shadow-md transition-all">
+          <section className="border border-gray-700 rounded-xl p-6 hover:border-blue-500 hover:shadow-md transition-all bg-gray-800">
             <div className="flex items-start mb-4">
-              <div className="mr-4 mt-1 h-8 w-8 flex items-center justify-center rounded-md bg-blue-100 text-blue-600">
+              <div className="mr-4 mt-1 h-8 w-8 flex items-center justify-center rounded-md bg-blue-900 text-blue-400">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="18"
@@ -66,21 +66,20 @@ export default function TermsOfService() {
                 </svg>
               </div>
               <div>
-                <h2 className="text-2xl font-semibold text-blue-600 mb-3">
+                <h2 className="text-2xl font-semibold text-blue-400 mb-3">
                   2. Description of Service
                 </h2>
-                <p className="text-gray-600">
-                  Bloomweaver AI Chat is an advanced AI chat platform focused on
-                  intelligent conversations. We provide AI-powered chat
-                  capabilities for various use cases.
+                <p className="text-gray-300">
+                  Bloomweaver AI Chat is an advanced AI chat platform that learns and adapts through conversations. 
+                  Our service provides personalized AI interactions by maintaining conversation history and context.
                 </p>
               </div>
             </div>
           </section>
 
-          <section className="border border-gray-200 rounded-xl p-6 hover:border-blue-300 hover:shadow-md transition-all">
+          <section className="border border-gray-700 rounded-xl p-6 hover:border-blue-500 hover:shadow-md transition-all bg-gray-800">
             <div className="flex items-start mb-4">
-              <div className="mr-4 mt-1 h-8 w-8 flex items-center justify-center rounded-md bg-blue-100 text-blue-600">
+              <div className="mr-4 mt-1 h-8 w-8 flex items-center justify-center rounded-md bg-blue-900 text-blue-400">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="18"
@@ -97,22 +96,20 @@ export default function TermsOfService() {
                 </svg>
               </div>
               <div>
-                <h2 className="text-2xl font-semibold text-blue-600 mb-3">
+                <h2 className="text-2xl font-semibold text-blue-400 mb-3">
                   3. User Accounts
                 </h2>
-                <p className="text-gray-600">
-                  To use certain features of our service, you may need to create
-                  an account. You are responsible for maintaining the
-                  confidentiality of your account information and for all
-                  activities that occur under your account.
+                <p className="text-gray-300">
+                  To use our service, you need to create an account. You are responsible for maintaining the
+                  confidentiality of your account information and for all activities that occur under your account.
                 </p>
               </div>
             </div>
           </section>
 
-          <section className="border border-gray-200 rounded-xl p-6 hover:border-blue-300 hover:shadow-md transition-all">
+          <section className="border border-gray-700 rounded-xl p-6 hover:border-blue-500 hover:shadow-md transition-all bg-gray-800">
             <div className="flex items-start mb-4">
-              <div className="mr-4 mt-1 h-8 w-8 flex items-center justify-center rounded-md bg-blue-100 text-blue-600">
+              <div className="mr-4 mt-1 h-8 w-8 flex items-center justify-center rounded-md bg-blue-900 text-blue-400">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="18"
@@ -128,22 +125,22 @@ export default function TermsOfService() {
                 </svg>
               </div>
               <div>
-                <h2 className="text-2xl font-semibold text-blue-600 mb-3">
-                  4. User Content
+                <h2 className="text-2xl font-semibold text-blue-400 mb-3">
+                  4. Data Storage and Usage
                 </h2>
-                <p className="text-gray-600">
-                  Messages sent in normal mode are stored to provide
-                  functionality. Messages sent in private mode are not stored.
-                  You retain ownership of any content you submit through our
-                  service.
+                <p className="text-gray-300">
+                  All chat messages and interactions are stored securely in our databases (Pinecone and AWS) 
+                  to provide personalized AI responses and maintain conversation context. This data is used 
+                  solely to improve your chat experience and train our AI to better understand and respond 
+                  to your messages. We do not sell or share your data with third parties for commercial purposes.
                 </p>
               </div>
             </div>
           </section>
 
-          <section className="border border-gray-200 rounded-xl p-6 hover:border-blue-300 hover:shadow-md transition-all">
+          <section className="border border-gray-700 rounded-xl p-6 hover:border-blue-500 hover:shadow-md transition-all bg-gray-800">
             <div className="flex items-start mb-4">
-              <div className="mr-4 mt-1 h-8 w-8 flex items-center justify-center rounded-md bg-blue-100 text-blue-600">
+              <div className="mr-4 mt-1 h-8 w-8 flex items-center justify-center rounded-md bg-blue-900 text-blue-400">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="18"
@@ -164,17 +161,17 @@ export default function TermsOfService() {
                 </svg>
               </div>
               <div>
-                <h2 className="text-2xl font-semibold text-blue-600 mb-3">
+                <h2 className="text-2xl font-semibold text-blue-400 mb-3">
                   5. Prohibited Uses
                 </h2>
-                <p className="text-gray-600 mb-4">
+                <p className="text-gray-300 mb-4">
                   You agree not to use our service for any unlawful purpose or
                   in any way that could damage, disable, or impair our service.
                 </p>
               </div>
             </div>
 
-            <ul className="space-y-3 text-gray-600 ml-12">
+            <ul className="space-y-3 text-gray-300 ml-12">
               {[
                 "Do not attempt to gain unauthorized access to our systems",
                 "Do not use our service to generate harmful or illegal content",
@@ -182,7 +179,7 @@ export default function TermsOfService() {
               ].map((item, index) => (
                 <li key={index} className="flex items-center">
                   <svg
-                    className="w-4 h-4 mr-2 text-red-500"
+                    className="w-4 h-4 mr-2 text-red-400"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -201,9 +198,9 @@ export default function TermsOfService() {
             </ul>
           </section>
 
-          <section className="border border-gray-200 rounded-xl p-6 hover:border-blue-300 hover:shadow-md transition-all">
+          <section className="border border-gray-700 rounded-xl p-6 hover:border-blue-500 hover:shadow-md transition-all bg-gray-800">
             <div className="flex items-start mb-4">
-              <div className="mr-4 mt-1 h-8 w-8 flex items-center justify-center rounded-md bg-blue-100 text-blue-600">
+              <div className="mr-4 mt-1 h-8 w-8 flex items-center justify-center rounded-md bg-blue-900 text-blue-400">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="18"
@@ -225,10 +222,10 @@ export default function TermsOfService() {
                 </svg>
               </div>
               <div>
-                <h2 className="text-2xl font-semibold text-blue-600 mb-3">
+                <h2 className="text-2xl font-semibold text-blue-400 mb-3">
                   6. Limitation of Liability
                 </h2>
-                <p className="text-gray-600">
+                <p className="text-gray-300">
                   Our service is provided &quot;as is&quot; without warranties
                   of any kind. We shall not be liable for any direct, indirect,
                   incidental, special, or consequential damages resulting from
@@ -238,9 +235,9 @@ export default function TermsOfService() {
             </div>
           </section>
 
-          <section className="border border-gray-200 rounded-xl p-6 hover:border-blue-300 hover:shadow-md transition-all">
+          <section className="border border-gray-700 rounded-xl p-6 hover:border-blue-500 hover:shadow-md transition-all bg-gray-800">
             <div className="flex items-start mb-4">
-              <div className="mr-4 mt-1 h-8 w-8 flex items-center justify-center rounded-md bg-blue-100 text-blue-600">
+              <div className="mr-4 mt-1 h-8 w-8 flex items-center justify-center rounded-md bg-blue-900 text-blue-400">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="18"
@@ -258,10 +255,10 @@ export default function TermsOfService() {
                 </svg>
               </div>
               <div>
-                <h2 className="text-2xl font-semibold text-blue-600 mb-3">
+                <h2 className="text-2xl font-semibold text-blue-400 mb-3">
                   7. Changes to Terms
                 </h2>
-                <p className="text-gray-600">
+                <p className="text-gray-300">
                   We reserve the right to modify these terms at any time. We
                   will notify users of any significant changes by posting a
                   notice on our website.
@@ -270,9 +267,9 @@ export default function TermsOfService() {
             </div>
           </section>
 
-          <section className="border border-gray-200 rounded-xl p-6 hover:border-blue-300 hover:shadow-md transition-all">
+          <section className="border border-gray-700 rounded-xl p-6 hover:border-blue-500 hover:shadow-md transition-all bg-gray-800">
             <div className="flex items-start mb-4">
-              <div className="mr-4 mt-1 h-8 w-8 flex items-center justify-center rounded-md bg-blue-100 text-blue-600">
+              <div className="mr-4 mt-1 h-8 w-8 flex items-center justify-center rounded-md bg-blue-900 text-blue-400">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="18"
@@ -290,10 +287,10 @@ export default function TermsOfService() {
                 </svg>
               </div>
               <div>
-                <h2 className="text-2xl font-semibold text-blue-600 mb-3">
+                <h2 className="text-2xl font-semibold text-blue-400 mb-3">
                   8. Governing Law
                 </h2>
-                <p className="text-gray-600">
+                <p className="text-gray-300">
                   These Terms shall be governed by and construed in accordance
                   with applicable laws, without regard to its conflict of law
                   principles.
@@ -302,9 +299,9 @@ export default function TermsOfService() {
             </div>
           </section>
 
-          <section className="border border-gray-200 rounded-xl p-6 hover:border-blue-300 hover:shadow-md transition-all">
+          <section className="border border-gray-700 rounded-xl p-6 hover:border-blue-500 hover:shadow-md transition-all bg-gray-800">
             <div className="flex items-start mb-4">
-              <div className="mr-4 mt-1 h-8 w-8 flex items-center justify-center rounded-md bg-blue-100 text-blue-600">
+              <div className="mr-4 mt-1 h-8 w-8 flex items-center justify-center rounded-md bg-blue-900 text-blue-400">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="18"
@@ -320,11 +317,11 @@ export default function TermsOfService() {
                 </svg>
               </div>
               <div>
-                <h2 className="text-2xl font-semibold text-blue-600 mb-3">
+                <h2 className="text-2xl font-semibold text-blue-400 mb-3">
                   9. Contact Information
                 </h2>
-                <p className="text-gray-600">
-                  If you have any questions about these Terms, please contact
+                <p className="text-gray-300">
+                  If you have any questions about these Terms or our data storage practices, please contact
                   us.
                 </p>
               </div>

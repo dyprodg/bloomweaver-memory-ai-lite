@@ -116,7 +116,7 @@ export default function Sidebar() {
   };
 
   return (
-    <div className="h-full fixed left-0 top-0 z-30">
+    <div className="h-full fixed left-0 top-0 z-30 text-gray-900">
       {/* Delete confirmation modal */}
       {showDeleteConfirm && (
         <div className="fixed inset-0 bg-transparent bg-opacity-30 z-50 flex items-center justify-center">
@@ -145,13 +145,13 @@ export default function Sidebar() {
       )}
 
       <div
-        className={`bg-white border-r shadow-sm h-full ${
+        className={`bg-white shadow-lg h-full ${
           isOpen ? "w-64" : "w-0"
-        } transition-all duration-300 flex flex-col`}
+        } transition-all duration-300 flex flex-col rounded-tr-2xl rounded-br-2xl`}
       >
         {isOpen ? (
           <>
-            <div className="p-4 border-b flex justify-between items-center">
+            <div className="p-4 flex justify-between items-center">
               <h2 className="font-semibold">Conversations</h2>
               <div className="flex gap-1">
                 {/* Chat mode selection button */}
@@ -228,7 +228,7 @@ export default function Sidebar() {
 
             {/* Private mode indicator */}
             {isPrivateMode && (
-              <div className="bg-purple-50 p-2 text-center border-b border-purple-200">
+              <div className="bg-purple-50 p-2 text-center">
                 <div className="flex items-center justify-center text-sm text-purple-700">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -363,7 +363,7 @@ export default function Sidebar() {
             </div>
 
             {/* Usage display at the bottom with debug info */}
-            <div className="border-t p-3 bg-gray-50">
+            <div className="p-3 bg-gray-50 rounded-br-2xl">
               <UsageDisplay />
             </div>
           </>

@@ -58,7 +58,7 @@ export default function ChatMessage({
         className={`max-w-[85%] p-4 rounded-lg shadow-sm ${
           isUser
             ? "bg-blue-600 text-white rounded-br-none"
-            : "bg-white text-gray-800 rounded-bl-none border border-gray-200"
+            : "bg-gray-800 text-gray-100 rounded-bl-none border border-gray-700"
         }`}
         suppressHydrationWarning
       >
@@ -76,7 +76,7 @@ export default function ChatMessage({
         )}
         <div
           className={`flex justify-between items-center mt-2 text-xs ${
-            isUser ? "text-blue-200" : "text-gray-500"
+            isUser ? "text-blue-200" : "text-gray-400"
           }`}
           suppressHydrationWarning
         >
@@ -84,7 +84,7 @@ export default function ChatMessage({
           <button
             onClick={copyToClipboard}
             className={`p-1 rounded hover:bg-opacity-20 ${
-              isUser ? "hover:bg-blue-500" : "hover:bg-gray-200"
+              isUser ? "hover:bg-blue-500" : "hover:bg-gray-700"
             }`}
             title="Copy message"
           >

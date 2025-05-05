@@ -42,7 +42,7 @@ export default function ChatInput({
   };
 
   return (
-    <div className="border-t bg-white p-4">
+    <div className="border-t border-gray-700 bg-gray-800 p-4 text-gray-100">
       <form onSubmit={handleSubmit} className="flex gap-2">
         <textarea
           ref={textareaRef}
@@ -52,8 +52,8 @@ export default function ChatInput({
           placeholder={
             disabled ? "Please wait..." : "Type your message here..."
           }
-          className={`flex-1 border rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none overflow-auto min-h-[40px] max-h-[200px] ${
-            disabled ? "bg-gray-100 cursor-not-allowed" : ""
+          className={`flex-1 border border-gray-600 rounded-xl px-4 py-2 bg-gray-800 text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none overflow-auto min-h-[40px] max-h-[200px] placeholder-gray-500 ${
+            disabled ? "bg-gray-700 cursor-not-allowed" : ""
           }`}
           style={{ resize: "none" }}
           rows={1}
@@ -64,7 +64,7 @@ export default function ChatInput({
           type="submit"
           className={`text-white rounded-full p-2 self-end transition-colors ${
             disabled || !message.trim()
-              ? "bg-gray-400 cursor-not-allowed"
+              ? "bg-gray-600 cursor-not-allowed"
               : "bg-blue-600 hover:bg-blue-700"
           }`}
           disabled={disabled || !message.trim()}
