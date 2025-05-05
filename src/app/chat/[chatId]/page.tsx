@@ -124,7 +124,7 @@ export default function ChatPage({
       const apiMessages = [
         {
           role: "system",
-          content: "You are a helpful, knowledgeable assistant.",
+          content: "Du bist ein hilfreicher und sachkundiger Assistent.",
         },
         ...messages.map((msg) => ({
           role: msg.role,
@@ -154,6 +154,10 @@ export default function ChatPage({
         isPrivateMode: false,
         model: selectedModel,
         chatId: chatId,
+        userContext: `Dieses Gespräch mit ${userMessage.content.substring(
+          0,
+          100
+        )}... ist wichtig zu merken.`,
       });
 
       // Process the streamed response
@@ -246,7 +250,7 @@ export default function ChatPage({
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
         content:
-          "Sorry, there was an error processing your request. Please try again.",
+          "Entschuldigung, bei der Verarbeitung deiner Anfrage ist ein Fehler aufgetreten. Bitte versuche es erneut.",
         isUser: false,
         timestamp: new Date(),
         role: "assistant",
@@ -287,15 +291,15 @@ export default function ChatPage({
     return (
       <div className="flex-1 flex items-center justify-center p-4 bg-gray-900">
         <div className="bg-red-900/50 text-red-200 p-6 rounded-lg max-w-[95%] sm:max-w-md text-center">
-          <h3 className="text-xl font-semibold mb-2">Chat not found</h3>
+          <h3 className="text-xl font-semibold mb-2">Chat nicht gefunden</h3>
           <p>
-            This chat session could not be found. You will be redirected to the
-            chat selection page.
+            Diese Chat-Sitzung konnte nicht gefunden werden. Du wirst zur
+            Chat-Auswahlseite weitergeleitet.
           </p>
           {chatId.startsWith("private-") && (
             <p className="mt-4 text-sm">
-              Note: Private chats are stored in memory and may not be available
-              after a server restart.
+              Hinweis: Private Chats werden im Speicher gespeichert und sind
+              möglicherweise nach einem Serverneustart nicht mehr verfügbar.
             </p>
           )}
         </div>
@@ -320,7 +324,7 @@ export default function ChatPage({
           </div>
           <div className="text-xs text-gray-400">
             <span>
-              {tierLoaded ? formatTierName(userTier) : "Loading..."} tier ·
+              {tierLoaded ? formatTierName(userTier) : "Lädt..."} Stufe ·
               <a href="#" className="text-blue-400 hover:underline ml-1">
                 {tierUpgradeInfo.upgradeText}
               </a>
@@ -342,7 +346,7 @@ export default function ChatPage({
         {isError && (
           <div className="flex justify-center my-4">
             <div className="bg-red-900/50 text-red-300 p-3 rounded-lg max-w-[90%] sm:max-w-[80%] text-center">
-              <p>An error occurred. Please try again.</p>
+              <p>Ein Fehler ist aufgetreten. Bitte versuche es erneut.</p>
               {debugInfo && (
                 <p className="text-xs mt-2 text-red-400 break-words">
                   {debugInfo}

@@ -50,7 +50,7 @@ export default function ChatInput({
           onChange={(e) => setMessage(e.target.value)}
           onKeyDown={handleKeyDown}
           placeholder={
-            disabled ? "Please wait..." : "Type your message here..."
+            disabled ? "Bitte warten..." : "Gib deine Nachricht hier ein..."
           }
           className={`flex-1 border border-gray-600 rounded-xl px-4 py-2 bg-gray-800 text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none overflow-auto min-h-[40px] max-h-[200px] placeholder-gray-500 ${
             disabled ? "bg-gray-700 cursor-not-allowed" : ""

@@ -25,7 +25,22 @@ type ChatRequest = {
   isPrivateMode?: boolean;
   model?: string;
   chatId?: string; // Added to track conversation ID
+  userContext?: string; // Optional additional user context
 };
+
+// User profile information
+const DEFAULT_USER_PROFILE = {
+  name: "Dennis Diepolder",
+  birthDate: "16.07.1996",
+  profession: "Software entwickler",
+  location: "Kreuzlingen, Schweiz"
+};
+
+// AI system information
+const BLOOMWEAVER_SYSTEM_INFO = 
+  "Du bist Bloomweaver, ein KI-Assistent, der durch Interaktionen lernt " +
+  "und personalisierte Antworten liefert. Du indexierst Gespräche in einer Vektordatenbank, " +
+  "um den Benutzer im Laufe der Zeit besser zu verstehen und funktionierst als ein speziell für ihn angepasstes Modell.";
 
 /**
  * Server action that streams chat completions from Groq
@@ -35,14 +50,15 @@ export async function streamChatCompletion(request: ChatRequest) {
     // Check if user is authenticated
     const { userId } = await auth();
     if (!userId) {
-      throw new Error("Unauthorized");
+      throw new Error("Nicht autorisiert");
     }
 
     const { 
       messages, 
       isPrivateMode = false, 
       model = "llama-3.1-8b-instant", 
-      chatId 
+      chatId,
+      userContext 
     } = request;
     
     // Check user tier to confirm model access
@@ -50,17 +66,33 @@ export async function streamChatCompletion(request: ChatRequest) {
     
     // Validate if the requested model is available for this user's tier
     if (!isModelAvailableForTier(model, userTier)) {
-      throw new Error(`Model not available in your tier`);
+      throw new Error(`Modell in deiner Stufe nicht verfügbar`);
     }
 
     // Check and decrement user's message limit
     const limitCheck = await checkAndDecrementUserLimit(userId);
     if (!limitCheck.success) {
-      throw new Error(limitCheck.error || "You've reached your message limit for this month");
+      throw new Error(limitCheck.error || "Du hast dein Nachrichtenlimit für diesen Monat erreicht");
     }
 
+    // Add system message with Bloomweaver information and user profile
+    const userProfileInfo = `Benutzerprofil: ${DEFAULT_USER_PROFILE.name}, geboren am ${DEFAULT_USER_PROFILE.birthDate}, ${DEFAULT_USER_PROFILE.profession} wohnhaft in ${DEFAULT_USER_PROFILE.location}`;
+    
+    // Add additional user context if provided
+    const fullUserContext = userContext 
+      ? `${userProfileInfo}. Zusätzlicher Kontext: ${userContext}`
+      : userProfileInfo;
+      
+    const systemMessage: Message = {
+      role: 'system',
+      content: `${BLOOMWEAVER_SYSTEM_INFO} ${fullUserContext}`
+    };
+
+    // Add system message at the beginning
+    const messagesWithSystem = [systemMessage, ...messages];
+
     // Transform messages to the format needed for memory processing
-    const transformedMessages = messages.map(msg => ({
+    const transformedMessages = messagesWithSystem.map(msg => ({
       id: randomUUID(),
       content: msg.content,
       isUser: msg.role === 'user',
@@ -108,7 +140,7 @@ export async function streamChatCompletion(request: ChatRequest) {
 
     if (!response.ok) {
       const errorData = await response.json();
-      throw new Error(errorData.error?.message || 'Error from API');
+      throw new Error(errorData.error?.message || 'Fehler von der API');
     }
 
     // Use ReadableStream to track completion tokens
@@ -146,7 +178,19 @@ export async function streamChatCompletion(request: ChatRequest) {
                   timestamp: new Date(),
                   role: 'assistant' as MessageRole,
                 };
+                
+                // Store the assistant message with personal context awareness
                 await storeMessageInMemory(userId, assistantMessage, chatId);
+                
+                // Store a system summary message that reinforces the personal context
+                const summaryMessage = {
+                  id: randomUUID(),
+                  content: `Gespräch mit ${DEFAULT_USER_PROFILE.name} über: ${fullContent.substring(0, 100)}...`,
+                  isUser: false,
+                  timestamp: new Date(),
+                  role: 'system' as MessageRole,
+                };
+                await storeMessageInMemory(userId, summaryMessage, chatId);
               }
               
               controller.close();
@@ -177,7 +221,7 @@ export async function streamChatCompletion(request: ChatRequest) {
             }
           }
         } catch (error) {
-          console.error('Stream error occurred');
+          console.error('Stream-Fehler aufgetreten');
           controller.error(error);
         } finally {
           reader.releaseLock();
@@ -185,7 +229,7 @@ export async function streamChatCompletion(request: ChatRequest) {
       }
     });
   } catch (error: unknown) {
-    console.error('Chat error occurred');
+    console.error('Chat-Fehler aufgetreten');
     throw error;
   }
 } 

@@ -40,7 +40,13 @@ export async function setUserTier(userId: string, tier: ModelTier): Promise<void
  * Format a tier name for display
  */
 export function formatTierName(tier: ModelTier): string {
-  return tier.charAt(0).toUpperCase() + tier.slice(1);
+  const germanTierNames: Record<ModelTier, string> = {
+    "free": "Kostenlos",
+    "basic": "Basis",
+    "premium": "Premium"
+  };
+  
+  return germanTierNames[tier] || tier.charAt(0).toUpperCase() + tier.slice(1);
 }
 
 /**
@@ -56,23 +62,23 @@ export function getTierUpgradeInfo(currentTier: ModelTier): {
       return { 
         canUpgrade: true, 
         nextTier: "basic",
-        upgradeText: "Upgrade to Basic" 
+        upgradeText: "Upgrade auf Basis" 
       };
     case "basic":
       return { 
         canUpgrade: true, 
         nextTier: "premium",
-        upgradeText: "Upgrade to Premium" 
+        upgradeText: "Upgrade auf Premium" 
       };
     case "premium":
       return { 
         canUpgrade: false,
-        upgradeText: "Manage subscription" 
+        upgradeText: "Abonnement verwalten" 
       };
     default:
       return { 
         canUpgrade: false,
-        upgradeText: "View plans" 
+        upgradeText: "Pläne anzeigen" 
       };
   }
 } 
