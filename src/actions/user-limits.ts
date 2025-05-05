@@ -18,12 +18,19 @@ interface CheckLimitResult {
 
 /**
  * Check if a user has remaining message limits
- * If they do, decrement their limit and return success
- * Also handles first-time initialization of user limits
+ * Currently disabled - all requests succeed with unlimited messages
+ * Original implementation preserved in comments below
  */
 export async function checkAndDecrementUserLimit(
   userId: string
 ): Promise<CheckLimitResult> {
+  // Always return success with unlimited messages
+  return {
+    success: true,
+    remainingMessages: Infinity,
+  };
+
+  /* Original implementation with limits:
   try {
     // First, check if the user is initialized, and if not, initialize them
     const initialized = await isUserInitialized(userId);
@@ -65,15 +72,25 @@ export async function checkAndDecrementUserLimit(
       error: "An error occurred while checking your message limit",
     };
   }
+  */
 }
 
 /**
  * Get user's remaining message count
- * Will initialize the user if they aren't already initialized
+ * Currently returns unlimited messages
  */
 export async function getUserRemainingMessages(
   userId: string
 ): Promise<{ limit: number; tier: string }> {
+  // Get the user's tier from database
+  const tier = await getUserTier(userId);
+  
+  return {
+    limit: Infinity,
+    tier,
+  };
+
+  /* Original implementation with limits:
   // First, check if the user is initialized, and if not, initialize them
   const initialized = await isUserInitialized(userId);
   if (!initialized) {
@@ -93,4 +110,5 @@ export async function getUserRemainingMessages(
     limit,
     tier,
   };
+  */
 } 
