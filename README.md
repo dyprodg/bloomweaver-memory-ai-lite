@@ -1,12 +1,14 @@
 # Dyprodg. Personal AI
 
-A modern AI assistant platform with user authentication and protected content.
+A modern AI assistant platform with user authentication, protected content, and memory capabilities using Pinecone vector database.
 
 ## Features
 
 - Next.js 15 with App Router
 - Clerk Authentication
 - Groq AI Integration
+- Memory System with Pinecone Vector Database
+- OpenAI Embeddings for semantic search
 - TailwindCSS for styling
 - Responsive design
 - Protected AI dashboard
@@ -39,7 +41,24 @@ A modern AI assistant platform with user authentication and protected content.
      GROQ_API_KEY=your_groq_api_key
      ```
 
-5. Set up Redis/KV Storage:
+5. Set up Pinecone:
+   - Create an account on [pinecone.io](https://www.pinecone.io/)
+   - Create a new index named 'chat-memory' with 1536 dimensions (for OpenAI embeddings)
+   - Generate an API key
+   - Add your Pinecone API key to the `.env.local` file:
+     ```
+     PINECONE_KEY=your_pinecone_api_key
+     ```
+
+6. Set up OpenAI:
+   - Create an account on [openai.com](https://platform.openai.com/)
+   - Generate an API key
+   - Add your OpenAI API key to the `.env.local` file:
+     ```
+     OPEN_AI_KEY=your_openai_api_key
+     ```
+
+7. Set up Redis/KV Storage:
    - Create an account on [Upstash](https://upstash.com/) or another Redis provider
    - Create a new Redis database
    - Get your REST API URL and Token
@@ -53,25 +72,22 @@ A modern AI assistant platform with user authentication and protected content.
      KV_REST_API_READ_ONLY_TOKEN=your_read_only_token
      ```
 
-6. Set up Encryption (required for chat data security):
-   - Generate a strong encryption key (at least 32 characters)
-   - Add it to your `.env.local` file:
-     ```
-     ENCRYPTION_KEY=your_very_strong_and_secure_encryption_key_here
-     ```
-   - You can generate a secure key with:
-     ```bash
-     node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
-     ```
-   - If upgrading from a previous version, migrate existing chats:
-     ```bash
-     npx ts-node scripts/migrate-to-encrypted.ts
-     ```
-
-7. Run the development server:
+8. Run the development server:
    ```bash
    npm run dev
    ```
+
+## How the Memory System Works
+
+This application has an integrated memory system that allows the AI to learn from previous conversations:
+
+1. Each user message is embedded using OpenAI's text-embedding-3-small model
+2. The embeddings are stored in Pinecone vector database with metadata
+3. When a new message is sent, the system searches for relevant context from previous conversations
+4. Retrieved context is added to the current conversation to help the AI provide more personalized responses
+5. All messages (both user and AI) are stored in the vector database for future reference
+
+This creates a system that gets smarter the more you use it, while maintaining privacy per user.
 
 ## Structure
 

@@ -153,6 +153,7 @@ export default function ChatPage({
         messages: apiMessages,
         isPrivateMode: false,
         model: selectedModel,
+        chatId: chatId,
       });
 
       // Process the streamed response

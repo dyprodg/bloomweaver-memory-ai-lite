@@ -9,8 +9,12 @@ import {
 } from '@/lib/groq-models';
 import { getUserTierAction } from './user-tier-action';
 import { checkAndDecrementUserLimit } from './user-limits';
+import { enrichMessagesWithContext, storeMessageInMemory } from '@/lib/memory';
+import { randomUUID } from 'crypto';
 
 // Define types for Groq API
+type MessageRole = 'user' | 'assistant' | 'system';
+
 type Message = {
   role: string;
   content: string;
@@ -20,6 +24,7 @@ type ChatRequest = {
   messages: Message[];
   isPrivateMode?: boolean;
   model?: string;
+  chatId?: string; // Added to track conversation ID
 };
 
 /**
@@ -33,7 +38,12 @@ export async function streamChatCompletion(request: ChatRequest) {
       throw new Error("Unauthorized");
     }
 
-    const { messages, isPrivateMode = false, model = "llama-3.1-8b-instant" } = request;
+    const { 
+      messages, 
+      isPrivateMode = false, 
+      model = "llama-3.1-8b-instant", 
+      chatId 
+    } = request;
     
     // Check user tier to confirm model access
     const userTier = await getUserTierAction(userId);
@@ -49,8 +59,32 @@ export async function streamChatCompletion(request: ChatRequest) {
       throw new Error(limitCheck.error || "You've reached your message limit for this month");
     }
 
+    // Transform messages to the format needed for memory processing
+    const transformedMessages = messages.map(msg => ({
+      id: randomUUID(),
+      content: msg.content,
+      isUser: msg.role === 'user',
+      timestamp: new Date(),
+      role: msg.role as MessageRole,
+    }));
+
+    // Enrich messages with relevant context from previous conversations
+    const enrichedMessages = await enrichMessagesWithContext(userId, transformedMessages);
+
+    // Store the last user message in memory
+    const lastUserMessage = [...transformedMessages].reverse().find(m => m.isUser);
+    if (lastUserMessage) {
+      await storeMessageInMemory(userId, lastUserMessage, chatId);
+    }
+
+    // Convert back to the format expected by Groq
+    const messagesForGroq = enrichedMessages.map(msg => ({
+      role: msg.role,
+      content: msg.content,
+    }));
+
     // Track estimated input tokens (prompt)
-    const promptText = messages.map(msg => msg.content).join(' ');
+    const promptText = messagesForGroq.map(msg => msg.content).join(' ');
     const estimatedPromptTokens = await estimateTokenCount(promptText);
 
     // Record the prompt tokens in stats
@@ -64,7 +98,7 @@ export async function streamChatCompletion(request: ChatRequest) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        messages: messages,
+        messages: messagesForGroq,
         model: model,
         temperature: 0.7,
         max_tokens: 4096,
@@ -101,6 +135,18 @@ export async function streamChatCompletion(request: ChatRequest) {
               
               if (completionTokens > 0) {
                 await recordMessageStats(completionTokens, isPrivateMode);
+              }
+              
+              // After completion, store the assistant's response in memory
+              if (fullContent) {
+                const assistantMessage = {
+                  id: randomUUID(),
+                  content: fullContent,
+                  isUser: false,
+                  timestamp: new Date(),
+                  role: 'assistant' as MessageRole,
+                };
+                await storeMessageInMemory(userId, assistantMessage, chatId);
               }
               
               controller.close();

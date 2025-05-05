@@ -118,6 +118,7 @@ export default function PrivateChatPage() {
         messages: apiMessages,
         isPrivateMode: true,
         model: selectedModel,
+        chatId: `private-${Date.now()}`,
       });
 
       // Process the streamed response
