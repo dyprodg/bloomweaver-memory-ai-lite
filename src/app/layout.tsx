@@ -16,8 +16,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Bloomweaver Memory AI",
-  description: "Advanced Memory AI for your conversations. A chatbot that remembers everything and learns from your conversations.",
+  title: "Bloomweaver Memory KI",
+  description:
+    "Fortschrittliche Memory-KI für deine Gespräche. Ein Chatbot, der sich an alles erinnert und aus deinen Gesprächen lernt.",
 };
 
 export default function RootLayout({
@@ -27,7 +28,7 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html lang="en" suppressHydrationWarning>
+      <html lang="de" suppressHydrationWarning>
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50 min-h-screen`}
         >

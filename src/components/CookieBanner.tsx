@@ -30,51 +30,47 @@ export default function CookieBanner() {
         transform: "translate(-50%, -50%)",
         width: "90%",
         maxWidth: "500px",
-        backgroundColor: "white",
+        backgroundColor: "#1a1a1a",
+        color: "#ffffff",
         zIndex: 99999,
-        boxShadow: "0 0 0 100vmax rgba(0,0,0,0.5)",
+        boxShadow: "0 0 0 100vmax rgba(0,0,0,0.7)",
         borderRadius: "8px",
         padding: "20px",
+        border: "1px solid #333",
       }}
     >
       <h3
         style={{ fontSize: "18px", fontWeight: "bold", marginBottom: "12px" }}
       >
-        Important Notice
+        Wichtiger Hinweis
       </h3>
-      <p style={{ fontSize: "14px", marginBottom: "16px" }}>
-        This website does not use cookies. We only store chats in normal mode
-        and basic usage data. See our{" "}
+      <p style={{ fontSize: "14px", marginBottom: "16px", color: "#e0e0e0" }}>
+        Diese Website verwendet keine Cookies. Wir speichern nur Chats im
+        normalen Modus und grundlegende Nutzungsdaten. Siehe unsere{" "}
         <Link
           href="/privacy-policy"
-          style={{ color: "blue", textDecoration: "underline" }}
+          style={{ color: "#66b3ff", textDecoration: "underline" }}
         >
-          Privacy Policy
+          Datenschutzrichtlinie
         </Link>{" "}
-        and{" "}
+        und{" "}
         <Link
           href="/terms"
-          style={{ color: "blue", textDecoration: "underline" }}
+          style={{ color: "#66b3ff", textDecoration: "underline" }}
         >
-          Terms of Service
+          Nutzungsbedingungen
         </Link>{" "}
-        for more information.
+        für weitere Informationen.
       </p>
       <button
         onClick={acceptCookies}
+        className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm py-2.5 px-4 rounded transition-colors duration-200"
         style={{
-          backgroundColor: "blue",
-          color: "white",
-          padding: "10px 16px",
-          borderRadius: "4px",
-          fontSize: "14px",
-          fontWeight: "500",
-          width: "100%",
-          cursor: "pointer",
           border: "none",
+          cursor: "pointer",
         }}
       >
-        I understand
+        Ich akzeptiere
       </button>
     </div>
   );
